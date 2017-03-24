@@ -111,9 +111,20 @@ module.exports = function(grunt){
         connect: {
             server: {
                 options: {
+                    protocol: 'http',
                     port: 80,
-                    base: '',
-                    hostname: '*'
+                    hostname: '*',
+                    keepalive: true,//保持服务器的持续执行 需要注意的是，如果有一个服务器的 keepalive 设置为 true，就会阻塞其它的服务器。
+                    base: ['src/']
+                }
+            },
+             server2: {
+                options: {
+                    protocol: 'http',
+                    port: 1987,
+                    hostname: '*',
+                    keepalive: true,//保持服务器的持续执行
+                    base: ['src/img']
                 }
             }
         },

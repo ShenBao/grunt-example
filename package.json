@@ -23,6 +23,9 @@
     "grunt-contrib-stylus": "^1.2.0",
     "grunt-contrib-uglify": "^2.2.0",
     "grunt-contrib-watch": "^1.0.0",
-    "nib": "^1.1.2"
+    "grunt-http-server": "^2.0.0",
+    "nib": "^1.1.2",
+    "open": "0.0.5",
+    "socket.io": "^1.7.3"
   }
 }
