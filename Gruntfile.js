@@ -20,6 +20,43 @@ module.exports = function(grunt){
                 dest:'dist/js/<%=pkg.name %> - <%= pkg.version %>.js'
             }
         },
+        // ==================================================clean==================================================================      
+
+        clean: {
+            build: {
+                src: [ 'dist' ]
+            },
+        },
+        // ==================================================copy==================================================================        
+        copy: {
+            build:{
+                cwd: 'src/img',
+                src: [ '**' ],
+                dest: 'dist/img',
+                expand: true 
+            },
+        },
+        // ==================================================stylus==================================================================                
+        stylus:{
+            build: {
+                options: {
+                    linenos: false,
+                    compress: true
+                },
+                files: [{
+                    'dist/css/index.css': ['src/css/*.styl']
+                }]
+            }
+        },
+        // ==================================================autoprefixer==============bufg====================================================
+        autoprefixer: {
+            build: {
+                expand: true,
+                cwd: 'build',
+                src: [ 'src/css/*.css' ],
+                dest: 'dist/css'
+            }
+        },
         // ==================================================cssmin==================================================================
         //压缩css
         cssmin:{
@@ -69,11 +106,27 @@ module.exports = function(grunt){
                 tasks:['jshint','csslint','concat','cssmin','uglify'],
                 options:{spawn:false}
             }
-        }
+        },
+        // ========================================================serve============================================================        
+        connect: {
+            server: {
+                options: {
+                    port: 80,
+                    base: '',
+                    hostname: '*'
+                }
+            }
+        },
  
     });
 
     // ====================================================================================================================    
+
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-stylus');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
     //告诉grunt我们将使用插件
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
